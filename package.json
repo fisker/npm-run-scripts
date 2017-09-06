@@ -1,6 +1,6 @@
 {
   "name": "npm-run-scripts",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "run npm scripts",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^2.1.0",
     "cross-spawn": "^5.1.0",
     "es6-promise": "^4.1.1",
     "fuzzy": "^0.1.3",
