@@ -11,3 +11,9 @@ npm i -g npm-run-scripts
 ```sh
 npm-run
 ```
+
+OR (since v1.0.4)
+
+```sh
+npm-run dev
+```
