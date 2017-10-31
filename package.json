@@ -1,15 +1,25 @@
 {
   "name": "npm-run-scripts",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "run npm scripts",
   "main": "index.js",
+  "keywords": [
+    "npm",
+    "scripts",
+    "run",
+    "script"
+  ],
+  "author": {
+    "name": "fisker Cheung",
+    "email": "lionkay@gmail.com",
+    "url": "https://github.com/fisker"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
     "npm-run": "bin/cli.js"
   },
-  "author": "",
   "license": "MIT",
   "dependencies": {
     "cross-spawn": "^5.1.0",
