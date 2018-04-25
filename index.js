@@ -13,12 +13,13 @@ if (process.argv[2]) {
   inquirer.registerPrompt('autocomplete', inquirerAutocompletePrompt)
 
   var scripts = require(join(dir, 'package.json')).scripts
-  var keys = Object.keys(scripts)
 
   if (!scripts) {
     process.stderr.write('ERROR: No scripts found!')
     process.exit(1)
   }
+
+  var keys = Object.keys(scripts)
 
   inquirer
     .prompt({
