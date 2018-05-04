@@ -16,7 +16,7 @@
   },
   "scripts": {
     "update-dependencies": "yarn upgrade-interactive --latest",
-    "release": "np"
+    "release": "np --no-yarn --no-cleanup"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
