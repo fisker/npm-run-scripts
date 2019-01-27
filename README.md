@@ -1,5 +1,7 @@
 # npm-run-scripts
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/fisker/npm-run-scripts.svg)](https://greenkeeper.io/)
+
 run npm scripts with a list you can select with arrow key
 
 ## install
