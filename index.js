@@ -95,5 +95,8 @@ function promptScripts() {
 }
 
 function exitWithMessage(msg) {
-  throw new Error(`${chalk.bold.red('ERROR')}: ${msg}`)
+  console.log(`${chalk.bold.red('ERROR')}: ${msg}`)
+
+  // eslint-disable-next-line unicorn/no-process-exit
+  process.exit(1)
 }
