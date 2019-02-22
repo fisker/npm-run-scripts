@@ -22,6 +22,11 @@ if (scriptName) {
 
 function getScripts() {
   const {pkg, path: file} = readPkgUp()
+
+  if (!pkg) {
+    exitWithMessage(`no package.json found.`)
+  }
+
   let {scripts = {}} = pkg
 
   scripts = Object.keys(scripts).map(script =>
@@ -50,6 +55,7 @@ function runScript(cmd) {
 
   return execa(NPM_CLIENT_CMD, ['run', cmd], {
     stdio: 'inherit',
+    cwd,
   })
 }
 

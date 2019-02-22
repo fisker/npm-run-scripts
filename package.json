@@ -22,7 +22,10 @@
     "registry": "https://registry.npmjs.org/"
   },
   "bin": {
-    "npm-run": "bin/cli.js"
+    "npm-run": "bin/cli.js",
+    "yarn-run": "bin/cli.js",
+    "nr": "bin/cli.js",
+    "yr": "bin/cli.js"
   },
   "license": "MIT",
   "dependencies": {
