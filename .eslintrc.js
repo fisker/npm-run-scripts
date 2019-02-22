@@ -1,10 +1,7 @@
 module.exports = {
-  plugins: ['prettier'],
+  root: true,
+  extends: ['@xwtec/eslint-config'].map(require.resolve),
   rules: {
-    'prettier/prettier': 'error'
+    'no-console': 'off',
   },
-  parserOptions: {
-    ecmaVersion: 6,
-    sourceType: 'module'
-  }
 }

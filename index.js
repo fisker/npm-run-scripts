@@ -1,80 +1,93 @@
-var CWD = process.cwd()
-var spawn = require('cross-spawn')
-var scriptName = process.argv[2]
-var scripts = getScripts()
+const path = require('path')
+const inquirer = require('inquirer')
+const fuzzy = require('fuzzy')
+const chalk = require('chalk')
+const execa = require('execa')
+const hasYarn = require('has-yarn')()
+const inquirerAutocompletePrompt = require('inquirer-autocomplete-prompt')
+const readPkgUp = require('read-pkg-up').sync
+
+const NPM_CLIENT_CMD = hasYarn ? 'yarn' : 'npm'
+
+inquirer.registerPrompt('autocomplete', inquirerAutocompletePrompt)
+
+const scriptName = process.argv[2]
+const {scripts, cwd} = getScripts()
 
 if (scriptName) {
-  runNpmScript(scriptName)
+  runScript(scriptName)
 } else {
-  promptScripts(scripts).then(runNpmScript)
-}
-
-function promptScripts(scripts) {
-  var inquirer = require('inquirer')
-  var inquirerAutocompletePrompt = require('inquirer-autocomplete-prompt')
-  var fuzzy = require('fuzzy')
-  var Promise = global.Promise || require('es6-promise').Promise
-
-  inquirer.registerPrompt('autocomplete', inquirerAutocompletePrompt)
-
-  return inquirer
-    .prompt({
-      type: 'autocomplete',
-      name: 'script',
-      message: 'Choice a script to run',
-      source: function(answers, input) {
-        var result = fuzzy.filter(input || '', scripts)
-        result = result.map(function(el) {
-          return el.original
-        })
-        return Promise.resolve(result)
-      },
-      pageSize: 10
-    })
-    .then(function(answers) {
-      return answers.script
-    })
-}
-
-function showError(msg) {
-  process.stderr.write('ERROR: ' + msg)
-  process.exit(1)
+  promptScripts()
 }
 
 function getScripts() {
-  var join = require('path').join
-  var pkg
-  var scriptKeys
+  const {pkg, path: file} = readPkgUp()
+  let {scripts = {}} = pkg
 
-  try {
-    pkg = require(join(CWD, 'package.json'))
-  } catch (err) {
-    showError('No package.json found!')
+  scripts = Object.keys(scripts).map(script =>
+    styleScript({
+      name: script,
+      command: scripts[script],
+    })
+  )
+
+  if (scripts.length === 0) {
+    exitWithMessage('Cannot find any scripts in package.json')
   }
 
-  var scripts = pkg.scripts
+  const cwd = path.dirname(file)
 
-  if (!scripts || typeof scripts !== 'object') {
-    showError('No scripts found!')
+  return {
+    scripts,
+    cwd,
   }
-
-  var scriptKeys = Object.keys(scripts)
-
-  if (!scriptKeys.length) {
-    showError('No scripts found!')
-  }
-
-  return scriptKeys
 }
 
-function runNpmScript(scriptName) {
-  if (!scripts.includes(scriptName)) {
-    process.stderr.write('ERROR: missing script: ' + scriptName + '')
-    process.exit(1)
+function runScript(cmd) {
+  if (!scripts.some(({name}) => name == cmd)) {
+    return noScriptFound(cmd)
   }
 
-  spawn('npm', ['run', scriptName], {
+  return execa(NPM_CLIENT_CMD, ['run', cmd], {
     stdio: 'inherit',
-    cwd: CWD
   })
+}
+
+function noScriptFound(name) {
+  console.error(`Cannot find any script named ${chalk.red(name)}\n`)
+
+  promptScripts()
+}
+
+function styleScript({name, command}) {
+  const display = `${chalk.bold.green(name)}  ${chalk.gray(command)}`
+  return {
+    name,
+    command,
+    display,
+  }
+}
+
+function promptScripts() {
+  return inquirer
+    .prompt([
+      {
+        type: 'autocomplete',
+        name: 'answer',
+        message: 'Choice a script to run:',
+        source(answers, input) {
+          const choices = fuzzy
+            .filter(input || '', scripts, {extract: ({name}) => name})
+            .map(({original}) => original.display)
+          return Promise.resolve(choices)
+        },
+        pageSize: 10,
+      },
+    ])
+    .then(({answer}) => scripts.filter(({display}) => display === answer)[0])
+    .then(({name}) => runScript(name))
+}
+
+function exitWithMessage(msg) {
+  throw new Error(`${chalk.bold.red('ERROR')}: ${msg}`)
 }

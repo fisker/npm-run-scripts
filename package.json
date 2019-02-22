@@ -26,11 +26,13 @@
   },
   "license": "MIT",
   "dependencies": {
-    "cross-spawn": "^6.0.5",
-    "es6-promise": "^4.2.4",
+    "chalk": "^2.4.2",
+    "execa": "^1.0.0",
     "fuzzy": "^0.1.3",
-    "inquirer": "^6.2.1",
-    "inquirer-autocomplete-prompt": "^1.0.1"
+    "has-yarn": "^1.0.0",
+    "inquirer": "^6.2.2",
+    "inquirer-autocomplete-prompt": "^1.0.1",
+    "read-pkg-up": "^4.0.0"
   },
   "files": [
     "LICENSE",
@@ -38,5 +40,8 @@
     "bin/cli.js",
     "index.js",
     "package.json"
-  ]
+  ],
+  "devDependencies": {
+    "@xwtec/eslint-config": "^3.5.8"
+  }
 }
