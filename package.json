@@ -1,6 +1,6 @@
 {
   "name": "npm-run-scripts",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "run npm scripts",
   "main": "index.js",
   "keywords": [
