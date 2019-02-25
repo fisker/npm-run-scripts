@@ -13,6 +13,22 @@ inquirer.registerPrompt('autocomplete', inquirerAutocompletePrompt)
 
 const scriptName = process.argv[2]
 const {scripts, folder, file} = getScripts()
+const promptOption = {
+  type: 'autocomplete',
+  name: 'answer',
+  message: 'Choice a script to execute:',
+  source(answers, input) {
+    const choices = fuzzy
+      .filter(input || '', scripts, {
+        extract({name, index}) {
+          return `${index + 1} ${name}`
+        },
+      })
+      .map(({original}) => original.display)
+    return Promise.resolve(choices)
+  },
+  pageSize: 10,
+}
 
 if (scriptName) {
   runScript(scriptName)
@@ -25,21 +41,22 @@ function getScripts() {
 
   if (!pkg) {
     exitWithMessage(
-      `no ${chalk.green('package.json')} found in ${chalk.blue(process.cwd())}.`
+      `no ${chalk.green('package.json')} found in ${chalk.cyan(process.cwd())}.`
     )
   }
 
   let {scripts = {}} = pkg
 
-  scripts = Object.keys(scripts).map(script =>
+  scripts = Object.keys(scripts).map((script, index) =>
     styleScript({
       name: script,
       command: scripts[script],
+      index,
     })
   )
 
   if (scripts.length === 0) {
-    exitWithMessage(`no scripts found in ${chalk.blue(file)}.`)
+    exitWithMessage(`no scripts found in ${chalk.cyan(file)}.`)
   }
 
   const folder = path.dirname(file)
@@ -63,38 +80,28 @@ function runScript(cmd) {
 }
 
 function noScriptFound(name) {
-  console.error(`no script named [${chalk.red(name)}] in ${chalk.green(file)}.`)
+  console.error(`no script named ${chalk.green(name)} in ${chalk.cyan(file)}.`)
 
   promptScripts()
 }
 
-function styleScript({name, command}) {
-  const display = `${chalk.green(name)} ${chalk.gray(command)}`
+function styleScript({name, command, index}) {
+  const display = `${chalk.bold.cyan(index + 1)}. ${chalk.cyan(
+    name
+  )} ${chalk.gray(command)}`
   return {
     name,
     command,
     display,
+    index,
   }
 }
 
 function promptScripts() {
-  console.log(`scripts in ${chalk.blue(file)}`)
+  console.log(`scripts in ${chalk.cyan(file)}`)
 
   return inquirer
-    .prompt([
-      {
-        type: 'autocomplete',
-        name: 'answer',
-        message: `Choice a script from to run:`,
-        source(answers, input) {
-          const choices = fuzzy
-            .filter(input || '', scripts, {extract: ({name}) => name})
-            .map(({original}) => original.display)
-          return Promise.resolve(choices)
-        },
-        pageSize: 10,
-      },
-    ])
+    .prompt(promptOption)
     .then(({answer}) => scripts.filter(({display}) => display === answer)[0])
     .then(({name}) => runScript(name))
 }
