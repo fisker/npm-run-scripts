@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@xwtec/eslint-config@^3.5.8":
+"@xwtec/eslint-config@3.5.8":
   version "3.5.8"
-  resolved "http://registry.npm.taobao.org/@xwtec/eslint-config/download/@xwtec/eslint-config-3.5.8.tgz#4f0b6a16d06271e8d947b493e0e06f99234f3586"
-  integrity sha1-TwtqFtBicejZR7ST4OBvmSNPNYY=
+  resolved "https://registry.yarnpkg.com/@xwtec/eslint-config/-/eslint-config-3.5.8.tgz#4f0b6a16d06271e8d947b493e0e06f99234f3586"
+  integrity sha512-4n5IRNkGMd9QwkPBrLD25yqrCipHEdtBV5eQlcoI0RWhVaWF1zzNksxJmaU4FIdwc0cyaOn9T24UDWvhuOFklg==
   dependencies:
     eslint-config-airbnb-base "^13.1.0"
     eslint-config-prettier "^4.0.0"

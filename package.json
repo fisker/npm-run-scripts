@@ -45,6 +45,6 @@
     "package.json"
   ],
   "devDependencies": {
-    "@xwtec/eslint-config": "^3.5.8"
+    "@xwtec/eslint-config": "3.5.8"
   }
 }
