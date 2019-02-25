@@ -7,12 +7,12 @@ const hasYarn = require('has-yarn')()
 const inquirerAutocompletePrompt = require('inquirer-autocomplete-prompt')
 const readPkgUp = require('read-pkg-up').sync
 
-const NPM_CLIENT_CMD = hasYarn ? 'yarn' : 'npm'
+const NPM_CLIENT = hasYarn ? 'yarn' : 'npm'
 
 inquirer.registerPrompt('autocomplete', inquirerAutocompletePrompt)
 
 const scriptName = process.argv[2]
-const {scripts, cwd} = getScripts()
+const {scripts, folder, file} = getScripts()
 
 if (scriptName) {
   runScript(scriptName)
@@ -24,7 +24,9 @@ function getScripts() {
   const {pkg, path: file} = readPkgUp()
 
   if (!pkg) {
-    exitWithMessage(`no package.json found.`)
+    exitWithMessage(
+      `no ${chalk.green('package.json')} found in ${chalk.blue(process.cwd())}.`
+    )
   }
 
   let {scripts = {}} = pkg
@@ -37,36 +39,37 @@ function getScripts() {
   )
 
   if (scripts.length === 0) {
-    exitWithMessage('Cannot find any scripts in package.json')
+    exitWithMessage(`no scripts found in ${chalk.blue(file)}.`)
   }
 
-  const cwd = path.dirname(file)
+  const folder = path.dirname(file)
 
   return {
     scripts,
-    cwd,
+    folder,
+    file,
   }
 }
 
 function runScript(cmd) {
-  if (!scripts.some(({name}) => name == cmd)) {
+  if (!scripts.some(({name}) => name === cmd)) {
     return noScriptFound(cmd)
   }
 
-  return execa(NPM_CLIENT_CMD, ['run', cmd], {
+  return execa(NPM_CLIENT, ['run', cmd], {
     stdio: 'inherit',
-    cwd,
+    folder,
   })
 }
 
 function noScriptFound(name) {
-  console.error(`Cannot find any script named ${chalk.red(name)}\n`)
+  console.error(`no script named [${chalk.red(name)}] in ${chalk.green(file)}.`)
 
   promptScripts()
 }
 
 function styleScript({name, command}) {
-  const display = `${chalk.bold.green(name)}  ${chalk.gray(command)}`
+  const display = `${chalk.green(name)} ${chalk.gray(command)}`
   return {
     name,
     command,
@@ -75,12 +78,14 @@ function styleScript({name, command}) {
 }
 
 function promptScripts() {
+  console.log(`scripts in ${chalk.blue(file)}`)
+
   return inquirer
     .prompt([
       {
         type: 'autocomplete',
         name: 'answer',
-        message: 'Choice a script to run:',
+        message: `Choice a script from to run:`,
         source(answers, input) {
           const choices = fuzzy
             .filter(input || '', scripts, {extract: ({name}) => name})
@@ -95,7 +100,7 @@ function promptScripts() {
 }
 
 function exitWithMessage(msg) {
-  console.log(`${chalk.bold.red('ERROR')}: ${msg}`)
+  console.log(`${chalk.red('ERROR')}: ${msg}`)
 
   // eslint-disable-next-line unicorn/no-process-exit
   process.exit(1)
