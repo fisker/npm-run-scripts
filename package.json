@@ -1,9 +1,14 @@
 {
   "name": "npm-run-scripts",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "run npm scripts",
   "main": "index.js",
-  "keywords": ["npm", "scripts", "run", "script"],
+  "keywords": [
+    "npm",
+    "scripts",
+    "run",
+    "script"
+  ],
   "author": {
     "name": "fisker Cheung",
     "email": "lionkay@gmail.com",
@@ -32,7 +37,13 @@
     "inquirer-autocomplete-prompt": "^1.0.1",
     "read-pkg-up": "^4.0.0"
   },
-  "files": ["LICENSE", "README.md", "bin/cli.js", "index.js", "package.json"],
+  "files": [
+    "LICENSE",
+    "README.md",
+    "bin/cli.js",
+    "index.js",
+    "package.json"
+  ],
   "devDependencies": {
     "@xwtec/eslint-config": "^3.5.8"
   }
