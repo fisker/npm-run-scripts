@@ -30,7 +30,7 @@ const promptOption = {
       }))
     return Promise.resolve(choices)
   },
-  pageSize: 10,
+  pageSize: Math.min(scripts.length, 15),
 }
 
 if (scriptName) {
