@@ -3,12 +3,7 @@
   "version": "1.0.14",
   "description": "run npm scripts",
   "main": "index.js",
-  "keywords": [
-    "npm",
-    "scripts",
-    "run",
-    "script"
-  ],
+  "keywords": ["npm", "scripts", "run", "script"],
   "author": {
     "name": "fisker Cheung",
     "email": "lionkay@gmail.com",
@@ -37,14 +32,22 @@
     "inquirer-autocomplete-prompt": "^1.0.1",
     "read-pkg-up": "^4.0.0"
   },
-  "files": [
-    "LICENSE",
-    "README.md",
-    "bin/cli.js",
-    "index.js",
-    "package.json"
-  ],
+  "files": ["LICENSE", "README.md", "bin/cli.js", "index.js", "package.json"],
   "devDependencies": {
-    "@xwtec/eslint-config": "^3.5.8"
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-conventional": "^7.5.0",
+    "@xwtec/eslint-config": "^3.5.8",
+    "cz-conventional-changelog-emoji": "^0.1.0",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.4",
+    "markdownlint-cli": "^0.14.0",
+    "np": "^4.0.2",
+    "prettier": "^1.16.4"
+  },
+  "readme": "ERROR: No README data found!",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog-emoji"
+    }
   }
 }
