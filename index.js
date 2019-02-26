@@ -20,11 +20,14 @@ const promptOption = {
   source(answers, input) {
     const choices = fuzzy
       .filter(input || '', scripts, {
-        extract({name, index}) {
-          return `${index + 1} ${name}`
-        },
+        extract: ({name}) => name,
       })
-      .map(({original}) => original.display)
+      .map(({original}) => original)
+      .map(({display, name}) => ({
+        name: display,
+        value: name,
+        short: name,
+      }))
     return Promise.resolve(choices)
   },
   pageSize: 10,
@@ -86,9 +89,7 @@ function noScriptFound(name) {
 }
 
 function styleScript({name, command, index}) {
-  const display = `${chalk.bold.cyan(index + 1)}. ${chalk.cyan(
-    name
-  )} ${chalk.gray(command)}`
+  const display = `${chalk.cyan(name)} ${chalk.gray(command)}`
   return {
     name,
     command,
@@ -100,10 +101,7 @@ function styleScript({name, command, index}) {
 function promptScripts() {
   console.log(`scripts in ${chalk.cyan(file)}`)
 
-  return inquirer
-    .prompt(promptOption)
-    .then(({answer}) => scripts.filter(({display}) => display === answer)[0])
-    .then(({name}) => runScript(name))
+  return inquirer.prompt(promptOption).then(({answer}) => runScript(answer))
 }
 
 function exitWithMessage(msg) {
