@@ -18,7 +18,7 @@ run npm scripts with a list you can select with arrow key
 ## install
 
 ```sh
-npm i -g npm-run-scripts
+npm install --global npm-run-scripts
 ```
 
 ## ustage
@@ -26,7 +26,8 @@ npm i -g npm-run-scripts
 ```sh
 nr
 
-# with script since v1.0.4
+# starting v1.0.4
+# with script name
 nr dev
 ```
 
