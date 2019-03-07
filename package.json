@@ -42,7 +42,6 @@
     "np": "^4.0.2",
     "prettier": "^1.16.4"
   },
-  "readme": "ERROR: No README data found!",
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog-emoji"
