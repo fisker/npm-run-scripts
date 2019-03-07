@@ -93,7 +93,10 @@ function scriptMessage(name, cmd) {
 function promptScripts() {
   console.log(`scripts in ${colors.cyan(file)}`)
 
-  return prompt(questions).then(({answer}) => runScript(answer))
+  return prompt(questions).then(
+    ({answer}) => runScript(answer),
+    () => console.log('canceled')
+  )
 }
 
 function exitWithMessage(msg) {
