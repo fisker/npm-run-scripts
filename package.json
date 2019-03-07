@@ -2,7 +2,6 @@
   "name": "npm-run-scripts",
   "version": "1.0.15",
   "description": "run npm scripts",
-  "main": "index.js",
   "keywords": ["npm", "scripts", "run", "script"],
   "author": {
     "name": "fisker Cheung",
@@ -17,22 +16,20 @@
     "registry": "https://registry.npmjs.org/"
   },
   "bin": {
-    "npm-run": "bin/cli.js",
-    "yarn-run": "bin/cli.js",
-    "nr": "bin/cli.js",
-    "yr": "bin/cli.js"
+    "npm-run": "cli",
+    "yarn-run": "cli",
+    "nr": "cli",
+    "yr": "cli"
   },
   "license": "MIT",
   "dependencies": {
-    "chalk": "^2.4.2",
+    "ansi-colors": "^3.2.4",
+    "enquirer": "^2.3.0",
     "execa": "^1.0.0",
-    "fuzzy": "^0.1.3",
     "has-yarn": "^1.0.0",
-    "inquirer": "^6.2.2",
-    "inquirer-autocomplete-prompt": "^1.0.1",
     "read-pkg-up": "^4.0.0"
   },
-  "files": ["LICENSE", "README.md", "bin/cli.js", "index.js", "package.json"],
+  "files": ["LICENSE", "README.md", "cli.js", "package.json"],
   "devDependencies": {
     "@commitlint/cli": "^7.5.2",
     "@commitlint/config-conventional": "^7.5.0",
