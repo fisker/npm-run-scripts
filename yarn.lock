@@ -1592,6 +1592,11 @@ has-yarn@^1.0.0:
   resolved "https://registry.yarnpkg.com/has-yarn/-/has-yarn-1.0.0.tgz#89e25db604b725c8f5976fff0addc921b828a5a7"
   integrity sha1-ieJdtgS3Jcj1l2//Ct3JIbgopac=
 
+has-yarn@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/has-yarn/-/has-yarn-2.0.0.tgz#11b77911708db3c5cccd07400537d9acab6131f1"
+  integrity sha512-QGlbr/PoBGNBNCpmoM8IgN2S9ZoCd8IWdzQEhXVsGIsfYw9UPayvb9f3ZFNtAzsNUQk25ooyHDyIy9EHNnlOdg==
+
 has@^1.0.1, has@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/has/-/has-1.0.3.tgz#722d7cbfc1f6aa8241f16dd814e011e1f41e8796"
