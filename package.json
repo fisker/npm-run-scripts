@@ -27,7 +27,7 @@
     "enquirer": "^2.3.0",
     "execa": "^1.0.0",
     "has-yarn": "^2.0.0",
-    "read-pkg-up": "^4.0.0"
+    "read-pkg-up": "^5.0.0"
   },
   "files": ["LICENSE", "README.md", "cli.js", "package.json"],
   "devDependencies": {
