@@ -5,7 +5,13 @@ const {prompt} = require('enquirer')
 const colors = require('ansi-colors')
 const execa = require('execa')
 const hasYarn = require('has-yarn')
+const updateNotifier = require('update-notifier')
 const readPkgUp = require('read-pkg-up').sync
+const pkg = require('./package.json')
+
+const notifier = updateNotifier({pkg})
+
+notifier.notify()
 
 const NPM_CLIENT = hasYarn() ? 'yarn' : 'npm'
 
@@ -101,7 +107,5 @@ function promptScripts() {
 
 function exitWithMessage(msg) {
   console.log(`${colors.red('ERROR')}: ${msg}`)
-
-  // eslint-disable-next-line unicorn/no-process-exit
-  process.exit(1)
+  process.exitCode = 1
 }
