@@ -997,10 +997,10 @@ eslint-config-airbnb-base@^13.1.0:
     object.assign "^4.1.0"
     object.entries "^1.0.4"
 
-eslint-config-fisker@^4.1.0:
-  version "4.1.0"
-  resolved "http://registry.npm.taobao.org/eslint-config-fisker/download/eslint-config-fisker-4.1.0.tgz#0bf1ccf8ebb94d2580e167830301ad80abcc15b4"
-  integrity sha1-C/HM+Ou5TSWA4WeDAwGtgKvMFbQ=
+eslint-config-fisker@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-fisker/-/eslint-config-fisker-4.2.2.tgz#70f90463e5ceaa051ae4ca77206eb89e80d69693"
+  integrity sha512-OlHuXeWPlhW82WpHAZt4GBwZtxvebGn1RgaJUIIaCMLG3d9IeYBVnyVkIGZKDkMy3lJLFFi2qldcFt2YPit1+A==
   dependencies:
     eslint-config-airbnb-base "^13.1.0"
     eslint-config-prettier "^4.1.0"
@@ -1008,7 +1008,7 @@ eslint-config-fisker@^4.1.0:
     eslint-plugin-import "^2.16.0"
     eslint-plugin-prettier "^3.0.1"
     eslint-plugin-promise "^4.0.1"
-    eslint-plugin-unicorn "^8.0.0"
+    eslint-plugin-unicorn "^8.0.1"
     eslint-plugin-vue "^5.2.2"
 
 eslint-config-prettier@^4.1.0:
@@ -1070,10 +1070,10 @@ eslint-plugin-promise@^4.0.1:
   resolved "http://registry.npm.taobao.org/eslint-plugin-promise/download/eslint-plugin-promise-4.0.1.tgz#2d074b653f35a23d1ba89d8e976a985117d1c6a2"
   integrity sha1-LQdLZT81oj0bqJ2Ol2qYURfRxqI=
 
-eslint-plugin-unicorn@^8.0.0:
-  version "8.0.0"
-  resolved "http://registry.npm.taobao.org/eslint-plugin-unicorn/download/eslint-plugin-unicorn-8.0.0.tgz#62d5a1f7ab492e470f32eeccec861b3c0ddcd56a"
-  integrity sha1-YtWh96tJLkcPMu7M7IYbPA3c1Wo=
+eslint-plugin-unicorn@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-8.0.1.tgz#9212c4d8dd729785db846db920148ca97d545696"
+  integrity sha512-BIkPbCww71GZPnT1U4jzlNQyabmV7JlHu3qhCGLkZZKFp7jWkWdCQziadYdpLFLD5A+Z2nSi1LPe8/fkesvPVg==
   dependencies:
     clean-regexp "^1.0.0"
     eslint-ast-utils "^1.0.0"
