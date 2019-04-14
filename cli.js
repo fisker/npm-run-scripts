@@ -6,10 +6,10 @@ const colors = require('ansi-colors')
 const execa = require('execa')
 const hasYarn = require('has-yarn')
 const updateNotifier = require('update-notifier')
-const readPkgUp = require('read-pkg-up').sync
-const pkg = require('./package.json')
+const readPackageUp = require('read-pkg-up').sync
+const package_ = require('./package.json')
 
-const notifier = updateNotifier({pkg})
+const notifier = updateNotifier({pkg: package_})
 
 notifier.notify()
 
@@ -40,7 +40,7 @@ if (scriptName) {
 }
 
 function getScripts() {
-  const {pkg, path: file} = readPkgUp()
+  const {pkg, path: file} = readPackageUp()
 
   if (!pkg) {
     exitWithMessage(
@@ -105,7 +105,7 @@ function promptScripts() {
   )
 }
 
-function exitWithMessage(msg) {
-  console.log(`${colors.red('ERROR')}: ${msg}`)
+function exitWithMessage(message) {
+  console.log(`${colors.red('ERROR')}: ${message}`)
   process.exitCode = 1
 }
