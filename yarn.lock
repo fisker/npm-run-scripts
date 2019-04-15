@@ -3140,10 +3140,10 @@ prepend-http@^2.0.0:
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-2.0.0.tgz#e92434bfa5ea8c19f41cdfd401d741a3c819d897"
   integrity sha1-6SQ0v6XqjBn0HN/UAddBo8gZ2Jc=
 
-prettier-config-fisker@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/prettier-config-fisker/-/prettier-config-fisker-1.0.1.tgz#ba98b936627bce634e3dc4dbfde9a86a70a919ad"
-  integrity sha512-92iyyMAxtxYBp0S9FzkdAIdvGy6YZJRHopslAMCX2FnmA4Rw9P3ih19866qmJBNzUsdgHbtUx0E89O8vyYtyNw==
+prettier-config-fisker@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/prettier-config-fisker/download/prettier-config-fisker-1.0.2.tgz#d79cc111035e8a267f14df1cbdba7af2afc0998e"
+  integrity sha1-15zBEQNeiiZ/FN8cvbp68q/AmY4=
 
 prettier-linter-helpers@^1.0.0:
   version "1.0.0"
