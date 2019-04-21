@@ -18,13 +18,14 @@
     "release": "run-s lint prettier dist",
     "lint": "run-p lint:*",
     "lint:eslint": "eslint **/*.{js,mjs,vue} --fix",
-    "lint:markdown": "markdownlint **/*.md --ignore \"node_modules/**\"",
+    "lint:markdown": "markdownlint **/*.md --ignore \"**/node_modules/**\"",
     "dist": "run-p dist:*",
     "dist:npm": "np --yolo --no-yarn",
     "prettier": "prettier **/*.{css,html,js,json,less,md,scss,ts,vue,yaml,yml} --write"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "bin": {
     "npm-run": "cli.js",
@@ -46,17 +47,18 @@
   ],
   "devDependencies": {
     "@commitlint/cli": "^7.5.2",
-    "@commitlint/config-conventional": "^7.5.0",
+    "@fisker/commitlint-config": "^1.0.2",
+    "@fisker/eslint-config": "^1.0.5",
+    "@fisker/lint-staged-config": "^1.0.1",
+    "@fisker/prettier-config": "^1.0.6",
     "cz-conventional-changelog-emoji": "^0.1.0",
     "eslint": "^5.16.0",
-    "eslint-config-fisker": "^4.5.0",
     "husky": "^1.3.1",
     "lint-staged": "^8.1.5",
     "markdownlint-cli": "^0.15.0",
     "np": "^5.0.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.17.0",
-    "prettier-config-fisker": "^1.0.3"
+    "prettier": "^1.17.0"
   },
   "config": {
     "commitizen": {
