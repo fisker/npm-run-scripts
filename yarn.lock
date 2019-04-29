@@ -186,10 +186,10 @@
   dependencies:
     "@fisker/eslint-config" "^1.0.5"
 
-"@fisker/prettier-config@^1.0.11":
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/@fisker/prettier-config/-/prettier-config-1.0.11.tgz#58f413bb11665da02b7f508047021a047d255a90"
-  integrity sha512-nsmDfxyl3UpQK0vXDdjTW7ePVLlyOeJG1gzzgWGII/tPKnMK/YorxAn4DtvnexnTE6urSDiP6kdQL9WxJ8cP1Q==
+"@fisker/prettier-config@^1.0.12":
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/@fisker/prettier-config/-/prettier-config-1.0.12.tgz#161be5931cc4ec659371c1a56340d7113c525008"
+  integrity sha512-HSGkDUkhmHYgBN2k6qNcZ9Ey/OBOTPLZOblLutGNP0uwoTj5WjBSQu5qyl/P2LOr7R8iNOz8XQ9AeBRv7Pw9lw==
 
 "@marionebl/sander@^0.6.0":
   version "0.6.1"
