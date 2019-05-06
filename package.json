@@ -47,7 +47,7 @@
   ],
   "devDependencies": {
     "@commitlint/cli": "^7.5.2",
-    "@fisker/commitlint-config": "^1.0.2",
+    "@fisker/commitlint-config": "^1.0.5",
     "@fisker/eslint-config": "^1.0.9",
     "@fisker/lint-staged-config": "^1.0.1",
     "@fisker/prettier-config": "^1.0.12",
