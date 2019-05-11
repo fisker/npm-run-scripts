@@ -1,7 +1,7 @@
 {
   "name": "npm-run-scripts",
   "version": "1.3.7",
-  "description": "run npm scripts",
+  "description": "Run Scripts in package.json File",
   "keywords": [
     "npm",
     "yarn",
@@ -14,6 +14,8 @@
     "email": "lionkay@gmail.com",
     "url": "https://www.fiskercheung.com/"
   },
+  "homepage": "https://github.com/fisker/npm-run-scripts#readme",
+  "repository": "fisker/npm-run-scripts",
   "scripts": {
     "release": "run-s lint build prettier dist",
     "lint": "run-p lint:*",
