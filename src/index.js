@@ -6,7 +6,7 @@ function main(command, script, options = {}) {
   if (script) {
     run(client, script)
   } else {
-    prompt(options).then(({answer}) => run(client, answer))
+    prompt(options).then(({answer}) => run(client, answer), () => {})
   }
 }
 
