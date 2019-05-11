@@ -4,7 +4,7 @@ import {dirname} from 'path'
 import exitWithMessage from './exit'
 
 function getPackage() {
-  const {pkg: package_ = {}, path: file} = readPackageUp()
+  const {pkg: package_, path: file} = readPackageUp()
 
   if (!package_) {
     exitWithMessage(
