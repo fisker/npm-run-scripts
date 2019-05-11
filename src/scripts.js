@@ -1,0 +1,47 @@
+import colors from 'ansi-colors'
+import {prompt} from 'enquirer'
+import execa from 'execa'
+import {file, scripts, folder} from './get-package-json'
+
+function noScriptFound(name) {
+  console.error(`no script named ${colors.red(name)} in ${colors.cyan(file)}.`)
+  promptScripts()
+}
+
+function promptScripts(options) {
+  const choices = scripts
+  const questions = {
+    type: 'autocomplete',
+    name: 'answer',
+    message: 'Choice a script to execute',
+    limit: Math.min(scripts.length, 15),
+    suggest(input, choices) {
+      return choices.filter(({name}) =>
+        name.toLowerCase().startsWith(input.toLowerCase())
+      )
+    },
+    choices,
+  }
+
+  console.log(`scripts in ${colors.cyan(file)}`)
+
+  return prompt(questions).then(
+    ({answer}) => runScript(answer, options),
+    () => console.log('canceled')
+  )
+}
+
+function runScript(name, options) {
+  if (!scripts.some(({name: scriptName}) => name === scriptName)) {
+    return noScriptFound(name)
+  }
+
+  const client = options.npm ? 'npm' : 'yarn'
+
+  return execa(client, ['run', name], {
+    stdio: 'inherit',
+    folder,
+  })
+}
+
+export {promptScripts as prompt, runScript as run}

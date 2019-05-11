@@ -1,0 +1,124 @@
+#!/usr/bin/env node
+'use strict';
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var meow = _interopDefault(require('meow'));
+var updateNotifier = _interopDefault(require('update-notifier'));
+var colors = _interopDefault(require('ansi-colors'));
+var enquirer = require('enquirer');
+var execa = _interopDefault(require('execa'));
+var readPkgUp = require('read-pkg-up');
+var path = require('path');
+
+function exitWithMessage(message) {
+  process.exitCode = 1;
+  throw new Error(`${colors.red('ERROR')}: ${message}`)
+}
+
+const {pkg: package_ = {}, path: file} = readPkgUp.sync();
+
+if (!package_) {
+  exitWithMessage(
+    `no ${colors.green('package.json')} found in ${colors.cyan(process.cwd())}.`
+  );
+}
+
+const {scripts = []} = package_;
+
+const commands = Object.keys(scripts).map((script, index) => ({
+  name: script,
+  message: scriptMessage(script, scripts[script]),
+  command: scripts[script],
+  index,
+  value: script,
+}));
+
+function scriptMessage(name, cmd) {
+  return `${colors.bold(name)} ${colors.gray(cmd)}`
+}
+
+const folder = path.dirname(file);
+
+if (scripts.length === 0) {
+  exitWithMessage(`no scripts found in ${colors.cyan(file)}.`);
+}
+
+function noScriptFound(name) {
+  console.error(
+    `no script named ${colors.green(name)} in ${colors.cyan(file)}.`
+  );
+
+  promptScripts();
+}
+
+function promptScripts(options) {
+  const choices = commands;
+  const questions = {
+    type: 'autocomplete',
+    name: 'answer',
+    message: 'Choice a script to execute',
+    limit: Math.min(commands.length, 15),
+    suggest(input, choices) {
+      return choices.filter(({name}) =>
+        name.toLowerCase().startsWith(input.toLowerCase())
+      )
+    },
+    choices,
+  };
+
+  console.log(`scripts in ${colors.cyan(file)}`);
+
+  return enquirer.prompt(questions).then(
+    ({answer}) => runScript(answer, options),
+    () => console.log('canceled')
+  )
+}
+
+function runScript(name, options) {
+  if (!commands.some(({name: scriptName}) => name === scriptName)) {
+    return noScriptFound(name)
+  }
+
+  const client = options.npm ? 'npm' : 'yarn';
+
+  return execa(client, ['run', name], {
+    stdio: 'inherit',
+    folder,
+  })
+}
+
+function main(command, script, options) {
+  if (script) {
+    runScript(script, options);
+  } else {
+    promptScripts(options);
+  }
+}
+
+updateNotifier({pkg: require('../package.json')}).notify();
+
+const cli = meow(
+  `
+  Usage
+    $ npm-run <script>
+    $ yarn-run <script>
+    $ nr <script>
+    $ yr <script>
+
+  Options
+    --npm ${colors.cyan('use npm instead of yarn')}
+
+  Examples
+    $ npm-run ${colors.cyan('build')}
+`,
+  {
+    flags: {
+      npm: {
+        type: 'boolean',
+      },
+    },
+  }
+);
+
+main(cli.input[0], cli.input[1], cli.flags);
