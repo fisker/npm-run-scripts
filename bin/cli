@@ -45,10 +45,7 @@ if (scripts.length === 0) {
 }
 
 function noScriptFound(name) {
-  console.error(
-    `no script named ${colors.green(name)} in ${colors.cyan(file)}.`
-  );
-
+  console.error(`no script named ${colors.red(name)} in ${colors.cyan(file)}.`);
   promptScripts();
 }
 
@@ -107,7 +104,7 @@ const cli = meow(
     $ yr <script>
 
   Options
-    --npm ${colors.cyan('use npm instead of yarn')}
+    --no-yarn ${colors.cyan('use npm instead of yarn')}
 
   Examples
     $ npm-run ${colors.cyan('build')}
