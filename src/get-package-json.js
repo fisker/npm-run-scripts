@@ -3,6 +3,10 @@ import colors from 'ansi-colors'
 import {dirname} from 'path'
 import exitWithMessage from './exit'
 
+function scriptMessage(name, cmd) {
+  return `${colors.bold(name)} ${colors.gray(cmd)}`
+}
+
 function getPackage() {
   const {pkg: package_, path: file} = readPackageUp()
 
@@ -14,7 +18,7 @@ function getPackage() {
     )
   }
 
-  const {scripts = []} = package_
+  const {scripts = {}} = package_
 
   const commands = Object.keys(scripts).map((script, index) => ({
     name: script,
@@ -24,13 +28,9 @@ function getPackage() {
     value: script,
   }))
 
-  function scriptMessage(name, cmd) {
-    return `${colors.bold(name)} ${colors.gray(cmd)}`
-  }
-
   const folder = dirname(file)
 
-  if (scripts.length === 0) {
+  if (commands.length === 0) {
     exitWithMessage(`no scripts found in ${colors.cyan(file)}.`)
   }
 
