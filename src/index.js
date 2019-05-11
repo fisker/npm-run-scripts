@@ -1,10 +1,12 @@
 import {prompt, run} from './scripts'
 
-function main(command, script, options) {
+function main(command, script, options = {}) {
+  const client = options.noYarn ? 'npm' : 'yarn'
+
   if (script) {
-    run(script, options)
+    run(client, script)
   } else {
-    prompt(options)
+    prompt(options).then(({answer}) => run(client, answer))
   }
 }
 

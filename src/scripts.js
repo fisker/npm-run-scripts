@@ -1,14 +1,12 @@
 import colors from 'ansi-colors'
 import {prompt} from 'enquirer'
 import execa from 'execa'
-import {file, scripts, folder} from './get-package-json'
+import getPackage from './get-package-json'
+import exitWithMessage from './exit'
 
-function noScriptFound(name) {
-  console.error(`no script named ${colors.red(name)} in ${colors.cyan(file)}.`)
-  promptScripts()
-}
+const {file, scripts, folder} = getPackage()
 
-function promptScripts(options) {
+function promptScripts() {
   const choices = scripts
   const questions = {
     type: 'autocomplete',
@@ -25,18 +23,15 @@ function promptScripts(options) {
 
   console.log(`scripts in ${colors.cyan(file)}`)
 
-  return prompt(questions).then(
-    ({answer}) => runScript(answer, options),
-    () => console.log('canceled')
-  )
+  return prompt(questions)
 }
 
-function runScript(name, options) {
+function runScript(client, name) {
   if (!scripts.some(({name: scriptName}) => name === scriptName)) {
-    return noScriptFound(name)
+    exitWithMessage(
+      `no script named ${colors.red(name)} in ${colors.cyan(file)}.`
+    )
   }
-
-  const client = options.npm ? 'npm' : 'yarn'
 
   return execa(client, ['run', name], {
     stdio: 'inherit',
