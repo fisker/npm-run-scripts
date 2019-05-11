@@ -4,10 +4,9 @@ import execa from 'execa'
 import getPackage from './get-package-json'
 import exitWithMessage from './exit'
 
-const {file, scripts, folder} = getPackage()
-
 function promptScripts() {
-  const choices = scripts
+  const {scripts, file} = getPackage()
+
   const questions = {
     type: 'autocomplete',
     name: 'answer',
@@ -18,7 +17,7 @@ function promptScripts() {
         name.toLowerCase().startsWith(input.toLowerCase())
       )
     },
-    choices,
+    choices: scripts,
   }
 
   console.log(`scripts in ${colors.cyan(file)}`)
@@ -27,6 +26,8 @@ function promptScripts() {
 }
 
 function runScript(client, name) {
+  const {scripts, file, folder} = getPackage()
+
   if (!scripts.some(({name: scriptName}) => name === scriptName)) {
     exitWithMessage(
       `no script named ${colors.red(name)} in ${colors.cyan(file)}.`
