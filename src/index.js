@@ -1,6 +1,6 @@
 import {prompt, run} from './scripts'
 
-function main(command, script, options = {}) {
+function main(script, options = {}) {
   const client = options.noYarn ? 'npm' : 'yarn'
 
   if (script) {

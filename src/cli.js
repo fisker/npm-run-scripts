@@ -28,4 +28,4 @@ const cli = meow(
   }
 )
 
-run(cli.input[0], cli.input[1], cli.flags)
+run(cli.input[0], cli.flags)
