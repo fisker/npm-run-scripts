@@ -29,9 +29,9 @@
     "access": "public"
   },
   "bin": {
-    "npm-run": "bin/cli --no-yarn",
+    "npm-run": "bin/cli",
     "yarn-run": "bin/cli",
-    "nr": "bin/cli --no-yarn",
+    "nr": "bin/cli",
     "yr": "bin/cli"
   },
   "license": "MIT",
