@@ -39,7 +39,6 @@
     "ansi-colors": "^3.2.4",
     "enquirer": "^2.3.0",
     "execa": "^1.0.0",
-    "has-yarn": "^2.1.0",
     "meow": "^5.0.0",
     "read-pkg-up": "^5.0.0",
     "update-notifier": "^3.0.0"
