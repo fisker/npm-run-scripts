@@ -21,7 +21,7 @@ const cli = meow(
 `,
   {
     flags: {
-      npm: {
+      noYarn: {
         type: 'boolean',
       },
     },

@@ -25,7 +25,7 @@ function promptScripts() {
   return prompt(questions)
 }
 
-function runScript(client, name) {
+function runScript(client, name, options = {}) {
   const {scripts, file, folder} = getPackage()
 
   if (!scripts.some(({name: scriptName}) => name === scriptName)) {
@@ -34,7 +34,11 @@ function runScript(client, name) {
     )
   }
 
-  return execa(client, ['run', name], {
+  const arguments_ = Object.entries(options).map(
+    ([key, value]) => `--${key} ${value}`
+  )
+
+  return execa(client, ['run', name, ...arguments_], {
     stdio: 'inherit',
     folder,
   })
