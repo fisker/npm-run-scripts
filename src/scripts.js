@@ -34,9 +34,15 @@ function runScript(client, name, options = {}) {
     )
   }
 
-  const arguments_ = Object.entries(options).map(
-    ([key, value]) => `--${key} ${value}`
-  )
+  const arguments_ = Object.entries(options)
+    .map(([key, value]) => {
+      if (typeof value === 'boolean') {
+        return value ? `--key` : ''
+      }
+
+      return `--${key} ${value}`
+    })
+    .filter(Boolean)
 
   return execa(client, ['run', name, ...arguments_], {
     stdio: 'inherit',
