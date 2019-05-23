@@ -8,7 +8,7 @@ function scriptMessage(name, cmd) {
 }
 
 function getPackage() {
-  const {pkg: package_, path: file} = readPackageUp()
+  const {package: package_, path: file} = readPackageUp()
 
   if (!package_) {
     exitWithMessage(
