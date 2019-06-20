@@ -17,14 +17,16 @@
   "homepage": "https://github.com/fisker/npm-run-scripts#readme",
   "repository": "fisker/npm-run-scripts",
   "scripts": {
-    "release": "run-s lint build prettier dist",
+    "release": "run-s lint build format dist",
     "lint": "run-p lint:*",
-    "lint:eslint": "eslint **/*.{js,mjs,vue} --fix",
+    "lint:eslint": "eslint **/*.{js,mjs,vue}",
     "lint:markdown": "markdownlint **/*.md --ignore \"**/node_modules/**\"",
     "build": "rollup --config",
     "dist": "run-p dist:*",
     "dist:npm": "np --yolo --no-yarn",
-    "prettier": "prettier **/*.{css,html,js,json,less,md,scss,ts,vue,yaml,yml} --write"
+    "format": "run-p format:*",
+    "format:eslint": "yarn lint:eslint --fix",
+    "format:prettier": "prettier **/*.{css,html,js,json,less,md,scss,ts,vue,yaml,yml} --write"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -52,6 +54,7 @@
     "@commitlint/cli": "^8.0.0",
     "@fisker/commitlint-config": "^1.0.9",
     "@fisker/eslint-config": "^1.1.1",
+    "@fisker/husky-config": "^1.1.0",
     "@fisker/lint-staged-config": "^1.0.4",
     "@fisker/prettier-config": "^1.0.17",
     "cz-conventional-changelog-emoji": "^0.1.0",
@@ -70,5 +73,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog-emoji"
     }
-  }
+  },
+  "sideEffects": false
 }
