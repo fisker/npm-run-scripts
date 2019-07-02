@@ -45,7 +45,7 @@
     "execa": "^2.0.2",
     "meow": "^5.0.0",
     "read-pkg-up": "^6.0.0",
-    "update-notifier": "^3.0.0"
+    "update-notifier": "^3.0.1"
   },
   "files": [
     "bin"
