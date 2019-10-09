@@ -43,7 +43,7 @@
   "dependencies": {
     "ansi-colors": "4.1.1",
     "enquirer": "2.3.2",
-    "execa": "2.0.5",
+    "execa": "2.1.0",
     "meow": "5.0.0",
     "read-pkg-up": "7.0.0",
     "update-notifier": "3.0.1"
