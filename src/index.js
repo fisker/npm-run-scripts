@@ -7,7 +7,10 @@ function main(script, options = {}) {
     const {noYarn, ...runOptions} = options
     run(client, script, runOptions)
   } else {
-    prompt(options).then(({answer: script}) => run(client, script), () => {})
+    prompt(options).then(
+      ({answer: script}) => run(client, script),
+      () => {}
+    )
   }
 }
 
