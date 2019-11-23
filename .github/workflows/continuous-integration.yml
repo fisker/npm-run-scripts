@@ -9,51 +9,51 @@ on:
   #   - cron: "0 23 * * 6"
 
 jobs:
-  test:
-    strategy:
-      matrix:
-        PLATFORM:
-          - "ubuntu-latest"
-          - "macos-latest"
-          - "windows-latest"
-        NODE:
-          - "13"
-          - "12"
-          - "10"
-        # exclude:
-        #   - PLATFORM: "macos-latest"
-        #     NODE: "12"
+  # test:
+  #   strategy:
+  #     matrix:
+  #       PLATFORM:
+  #         - "ubuntu-latest"
+  #         - "macos-latest"
+  #         - "windows-latest"
+  #       NODE:
+  #         - "13"
+  #         - "12"
+  #         - "10"
+  #       # exclude:
+  #       #   - PLATFORM: "macos-latest"
+  #       #     NODE: "12"
 
-    name: Test on node ${{ matrix.NODE }} and ${{ matrix.PLATFORM }}
-    runs-on: ${{ matrix.PLATFORM }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
+  #   name: Test on node ${{ matrix.NODE }} and ${{ matrix.PLATFORM }}
+  #   runs-on: ${{ matrix.PLATFORM }}
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@master
 
-      - name: Setup Node.js
-        uses: actions/setup-node@master
-        with:
-          node-version: ${{ matrix.NODE }}
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@master
+  #       with:
+  #         node-version: ${{ matrix.NODE }}
 
-      - name: Install Dependencies
-        run: yarn
+  #     - name: Install Dependencies
+  #       run: yarn
 
-      - name: Run Test
-        run: yarn test
+  #     - name: Run Test
+  #       run: yarn test
 
-      - name: Upload Coverage Parallel
-        uses: coverallsapp/github-action@master
-        if: success()
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          parallel: true
+  #     - name: Upload Coverage Parallel
+  #       uses: coverallsapp/github-action@master
+  #       if: success()
+  #       with:
+  #         github-token: ${{ secrets.GITHUB_TOKEN }}
+  #         parallel: true
 
-      - name: Upload Coverage Finished
-        uses: coverallsapp/github-action@master
-        if: success()
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          parallel-finished: true
+  #     - name: Upload Coverage Finished
+  #       uses: coverallsapp/github-action@master
+  #       if: success()
+  #       with:
+  #         github-token: ${{ secrets.GITHUB_TOKEN }}
+  #         parallel-finished: true
 
   # test-dist:
   #   strategy:
@@ -151,5 +151,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
-          name: dist
-          path: dist
+          name: bin
+          path: bin
