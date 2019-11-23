@@ -35,10 +35,10 @@
     "access": "public"
   },
   "bin": {
-    "npm-run": "bin/cli",
-    "yarn-run": "bin/cli",
-    "nr": "bin/cli",
-    "yr": "bin/cli"
+    "npm-run": "dist/cli",
+    "yarn-run": "dist/cli",
+    "nr": "dist/cli",
+    "yr": "dist/cli"
   },
   "license": "MIT",
   "dependencies": {
@@ -50,7 +50,7 @@
     "update-notifier": "3.0.1"
   },
   "files": [
-    "bin"
+    "dist"
   ],
   "devDependencies": {
     "@commitlint/cli": "8.2.0",
@@ -68,7 +68,6 @@
     "prettier": "1.19.1",
     "rollup": "1.27.4",
     "rollup-plugin-commonjs": "10.1.0",
-    "rollup-plugin-filesize": "6.2.1",
     "rollup-plugin-json": "4.0.0"
   },
   "config": {
