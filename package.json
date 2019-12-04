@@ -4,43 +4,52 @@
   "description": "Run Scripts in package.json File",
   "keywords": [
     "npm",
-    "yarn",
-    "scripts",
     "run",
-    "script"
+    "script",
+    "scripts",
+    "yarn"
   ],
+  "homepage": "https://github.com/fisker/npm-run-scripts#readme",
+  "repository": "fisker/npm-run-scripts",
+  "license": "MIT",
   "author": {
     "name": "fisker Cheung",
     "email": "lionkay@gmail.com",
     "url": "https://www.fiskercheung.com/"
   },
-  "homepage": "https://github.com/fisker/npm-run-scripts#readme",
-  "repository": "fisker/npm-run-scripts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "bin": {
+    "npm-run": "dist/cli",
+    "nr": "dist/cli",
+    "yarn-run": "dist/cli",
+    "yr": "dist/cli"
+  },
   "scripts": {
     "build": "rollup --config",
+    "clean": "run-p clean:*",
+    "clean:dist": "del-cli dist",
     "dist": "run-p dist:*",
     "dist:npm": "np --yolo --no-yarn",
     "format": "run-p format:*",
     "format:eslint": "yarn lint:eslint --fix",
     "format:markdown": "yarn lint:markdown --fix",
+    "format:package-json": "sort-package-json \"package.json\" \"packages/*/package.json\"",
     "format:prettier": "yarn lint:prettier --write",
     "lint": "run-p lint:*",
     "lint:eslint": "eslint \"**/*.{js,mjs,vue}\"",
     "lint:markdown": "markdownlint \"**/*.md\" --ignore \"**/node_modules/**\"",
+    "lint:package-json": "yarn run format:package-json --check",
     "lint:prettier": "prettier \"**/*.{css,html,js,json,less,md,scss,ts,vue,yaml,yml}\" --check",
     "release": "run-s lint build format dist"
   },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "access": "public"
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
-  "bin": {
-    "npm-run": "dist/cli",
-    "yarn-run": "dist/cli",
-    "nr": "dist/cli",
-    "yr": "dist/cli"
-  },
-  "license": "MIT",
   "dependencies": {
     "ansi-colors": "4.1.1",
     "enquirer": "2.3.2",
@@ -49,9 +58,6 @@
     "read-pkg-up": "7.0.0",
     "update-notifier": "3.0.1"
   },
-  "files": [
-    "dist"
-  ],
   "devDependencies": {
     "@commitlint/cli": "8.2.0",
     "@fisker/commitlint-config": "1.1.4",
@@ -60,6 +66,7 @@
     "@fisker/lint-staged-config": "1.0.8",
     "@fisker/prettier-config": "1.0.24",
     "cz-conventional-changelog": "3.0.2",
+    "del-cli": "3.0.0",
     "eslint": "6.7.2",
     "husky": "3.1.0",
     "lint-staged": "9.5.0",
@@ -68,12 +75,11 @@
     "prettier": "1.19.1",
     "rollup": "1.27.8",
     "rollup-plugin-commonjs": "10.1.0",
-    "rollup-plugin-json": "4.0.0"
+    "rollup-plugin-json": "4.0.0",
+    "sort-package-json": "1.30.0"
   },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "sideEffects": false
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
 }
