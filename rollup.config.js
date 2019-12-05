@@ -1,4 +1,5 @@
-import json from 'rollup-plugin-json'
+// eslint-disable-next-line import/no-unresolved
+import json from '@rollup/plugin-json'
 import commonjs from 'rollup-plugin-commonjs'
 import {dependencies} from './package.json'
 
