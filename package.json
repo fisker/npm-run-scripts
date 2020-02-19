@@ -10,7 +10,11 @@
     "yarn"
   ],
   "homepage": "https://github.com/fisker/npm-run-scripts#readme",
+  "bugs": {
+    "url": "https://github.com/fisker/npm-run-scripts/issues"
+  },
   "repository": "fisker/npm-run-scripts",
+  "funding": "https://github.com/fisker/npm-run-scripts?sponsor=1",
   "license": "MIT",
   "author": {
     "name": "fisker Cheung",
