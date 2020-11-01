@@ -60,7 +60,7 @@
     "execa": "4.1.0",
     "meow": "8.0.0",
     "read-pkg-up": "7.0.1",
-    "update-notifier": "5.0.0"
+    "update-notifier": "5.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "11.0.0",
