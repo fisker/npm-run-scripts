@@ -1,6 +1,6 @@
 import {sync as readPackageUp} from 'read-pkg-up'
 import colors from 'ansi-colors'
-import {dirname} from 'path'
+import path from 'path'
 import exitWithMessage from './exit'
 
 function scriptMessage(name, cmd) {
@@ -28,7 +28,7 @@ function getPackage() {
     value: script,
   }))
 
-  const folder = dirname(file)
+  const folder = path.dirname(file)
 
   if (commands.length === 0) {
     exitWithMessage(`no scripts found in ${colors.cyan(file)}.`)
