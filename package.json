@@ -59,7 +59,7 @@
     "enquirer": "2.3.6",
     "execa": "5.0.0",
     "meow": "8.1.2",
-    "read-pkg-up": "7.0.1",
+    "read-pkg-up": "8.0.0",
     "update-notifier": "5.0.1"
   },
   "devDependencies": {
