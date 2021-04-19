@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
   # schedule:
   #   - cron: "0 23 * * 6"
@@ -76,13 +76,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
-        with:
-          fetch-depth: 1
 
       - name: Setup Node.js
         uses: actions/setup-node@master
-        with:
-          node-version: "12"
 
       - name: Install Dependencies
         run: yarn
@@ -90,28 +86,26 @@ jobs:
       - name: Run Lint
         run: yarn lint
 
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
-        with:
-          fetch-depth: 1
+  # build:
+  #   name: Build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@master
 
-      - name: Setup Node.js
-        uses: actions/setup-node@master
-        with:
-          node-version: "12"
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@master
+  #       with:
+  #         node-version: "12"
 
-      - name: Install Dependencies
-        run: yarn
+  #     - name: Install Dependencies
+  #       run: yarn
 
-      - name: Build Package
-        run: yarn build
+  #     - name: Build Package
+  #       run: yarn build
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: dist
-          path: dist
+  #     - name: Upload Artifact
+  #       uses: actions/upload-artifact@master
+  #       with:
+  #         name: dist
+  #         path: dist
