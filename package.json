@@ -1,6 +1,6 @@
 {
   "name": "npm-run-scripts",
-  "version": "1.4.4",
+  "version": "2.0.0",
   "description": "Run Scripts in package.json File",
   "keywords": [
     "npm",
