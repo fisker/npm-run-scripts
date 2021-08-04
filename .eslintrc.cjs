@@ -13,7 +13,9 @@ module.exports = {
   parserOptions: {},
   extends: ['@fisker'],
   settings: {},
-  rules: {},
+  rules: {
+    'unicorn/no-process-exit': 'off',
+  },
   plugins: [],
   globals: {},
   overrides: [],
