@@ -60,7 +60,7 @@
     "ansi-colors": "4.1.1",
     "enquirer": "2.3.6",
     "esm-utils": "2.0.0",
-    "execa": "5.1.1",
+    "execa": "6.0.0",
     "meow": "10.1.1",
     "read-pkg-up": "8.0.0",
     "update-notifier": "5.1.0"
