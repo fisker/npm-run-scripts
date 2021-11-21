@@ -61,7 +61,7 @@
     "enquirer": "2.3.6",
     "esm-utils": "2.0.0",
     "execa": "6.0.0",
-    "meow": "10.1.1",
+    "meow": "10.1.2",
     "read-pkg-up": "9.0.0",
     "update-notifier": "5.1.0"
   },
