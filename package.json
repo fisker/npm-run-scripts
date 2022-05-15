@@ -57,7 +57,7 @@
     }
   },
   "dependencies": {
-    "ansi-colors": "4.1.1",
+    "ansi-colors": "4.1.2",
     "enquirer": "2.3.6",
     "esm-utils": "3.0.0",
     "execa": "6.1.0",
