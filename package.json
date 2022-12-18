@@ -73,7 +73,7 @@
     "@fisker/lint-staged-config": "3.1.6",
     "@fisker/prettier-config": "5.0.7",
     "@rollup/plugin-commonjs": "23.0.7",
-    "@rollup/plugin-json": "5.0.2",
+    "@rollup/plugin-json": "6.0.0",
     "cz-conventional-changelog": "3.3.0",
     "del-cli": "5.0.0",
     "eslint": "8.30.0",
