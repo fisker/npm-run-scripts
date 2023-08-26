@@ -75,7 +75,7 @@
     "@rollup/plugin-commonjs": "25.0.4",
     "@rollup/plugin-json": "6.0.0",
     "cz-conventional-changelog": "3.3.0",
-    "del-cli": "5.0.0",
+    "del-cli": "5.0.1",
     "eslint": "8.39.0",
     "husky": "8.0.3",
     "lint-staged": "14.0.1",
