@@ -76,7 +76,7 @@
     "@rollup/plugin-json": "6.1.0",
     "cz-conventional-changelog": "3.3.0",
     "del-cli": "6.0.0",
-    "eslint": "8.39.0",
+    "eslint": "8.57.1",
     "husky": "9.1.7",
     "lint-staged": "15.4.3",
     "markdownlint-cli": "0.44.0",
